@@ -50,5 +50,10 @@ export const goToAuth = () => {
 };
 
 export const goToProfile = () => {
-  window.location.hash = "#profile";
-};
+  if (authService.currentUser == null) {
+    alert('로그인 하세요')
+  } else {
+    window.location.hash = "#profile";
+  };
+}
+
