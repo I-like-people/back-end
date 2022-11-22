@@ -45,6 +45,10 @@ export const handleLocation = async () => {
   }
 };
 
+export const goToAuth = () => {
+  window.location.hash = "#profile";
+};
+
 export const goToProfile = () => {
   window.location.hash = "#profile";
 };

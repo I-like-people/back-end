@@ -1,7 +1,7 @@
 import { handleAuth, onToggle, logout } from "./pages/auth.js";
 import { changeProfile, onFileChange } from "./pages/profile.js";
 import { socialLogin } from "./pages/auth.js";
-import { handleLocation, goToProfile } from "./router.js";
+import { handleLocation, goToProfile, goToAuth } from "./router.js";
 import { authService } from "./firebase.js";
 import {
   save_comment,
@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
 window.onToggle = onToggle;
 window.handleAuth = handleAuth;
 window.goToProfile = goToProfile;
+window.goToAuth = goToAuth;
 window.socialLogin = socialLogin;
 window.logout = logout;
 window.onFileChange = onFileChange;
