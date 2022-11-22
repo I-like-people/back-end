@@ -1,0 +1,212 @@
+* {
+  font-family: "Noto Serif KR", serif;
+}
+
+.mypic {
+  width: 100%;
+  height: 300px;
+  position: relative;
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
+    url("/assets/choyihyun.webp");
+  background-position: center 19%;
+  background-size: cover;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.mypost {
+  width: 95%;
+  max-width: 500px;
+  margin: 20px auto 20px auto;
+
+  box-shadow: 0px 0px 3px 0px black;
+  padding: 20px;
+}
+
+.mypost > button {
+  margin-top: 15px;
+}
+
+.mycards {
+  width: 95%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.mycards > .card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#authPage {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authInput {
+  margin-bottom: 10px;
+}
+
+.authInput > div {
+  width: 40px;
+  font-size: large;
+}
+
+.authInput > input {
+  width: 100%;
+}
+
+.socialBtns {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#profileMngr {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#profileMngr > button {
+  background-color: white;
+  font-size: medium;
+  padding: 5px 10px;
+}
+
+#profileMngr > button:hover {
+  background-color: black;
+  color: white;
+}
+
+.regBtn {
+  display: none;
+}
+
+#authToggle {
+  text-decoration: underline;
+  color: blue;
+  margin: 10px 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+#authBtnSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#authWrapper {
+  border: 1px solid black;
+  padding: 40px;
+  border-radius: 10px;
+  background-color: bisque;
+  min-width: 350px;
+}
+#authTitle {
+  text-align: center;
+}
+
+#profileImg {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+#profilePage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profileWrapper {
+  width: auto;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 10px;
+}
+#profileWrapper > h2 {
+  text-align: center;
+}
+
+#profileView {
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#profileForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+
+#imgInput {
+  display: none;
+}
+
+#imgLabel {
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+#postBtnWrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.updateBtns {
+  display: flex;
+  justify-content: end;
+  margin-top: 5px;
+  gap: 5px;
+}
+
+.noDisplay {
+  display: none;
+}
+.updateBtn {
+  min-width: 70px;
+}
+.newCmtInput {
+  width: 100%;
+}
+.cmtImg {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.quote-footer {
+  margin-top: 20px;
+  color: #6c757d;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#notFound {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
