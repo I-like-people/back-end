@@ -1,5 +1,11 @@
 import { authService } from "./firebase.js";
 
+import { getCommentList, logoutgetCommentList } from "./pages/fanLog.js";
+import { getMyCommentList } from "./pages/profile.js";
+
+import { weather } from "./pages/weather.js"
+
+
 const routes = {
   404: "/pages/404.html",
   "/": "/pages/home.html",
@@ -7,8 +13,7 @@ const routes = {
   profile: "/pages/profile.html",
   auth: "/pages/auth.html",
 };
-import { getCommentList, logoutgetCommentList } from "./pages/fanLog.js";
-import { getMyCommentList } from "./pages/profile.js";
+
 
 export const handleLocation = async () => {
   let path = window.location.hash.replace("#", "");
@@ -46,7 +51,11 @@ export const handleLocation = async () => {
       document.getElementById("profileImg").src =
         authService.currentUser.photoURL ?? "../assets/blankProfile.webp";
 
+      weather();
+
       getCommentList();
+
+
     }
 
   }
