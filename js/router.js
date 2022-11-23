@@ -7,7 +7,7 @@ const routes = {
   profile: "/pages/profile.html",
   auth: "/pages/auth.html",
 };
-import { getCommentList } from "./pages/fanLog.js";
+import { getCommentList, getMyCommentList } from "./pages/fanLog.js";
 
 export const handleLocation = async () => {
   let path = window.location.hash.replace("#", "");
@@ -43,7 +43,7 @@ export const handleLocation = async () => {
     document.getElementById("profileNickname").placeholder =
       authService.currentUser.displayName ?? "닉네임 없음";
 
-    getCommentList();
+    getMyCommentList();
   }
 };
 
