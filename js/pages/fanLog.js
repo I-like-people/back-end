@@ -104,7 +104,7 @@ export const getCommentList = async () => {
   });
   const commnetList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
-  commnetList.innerHTML = "";
+  commnetList.innerHTML = "";// 불러오기 전에 초기화(이거 안 하면 계속 반복되는 내용 쌓일 것 같다)
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
     const temp_html = `<div class="card commentCard">
