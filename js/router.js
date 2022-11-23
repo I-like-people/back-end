@@ -47,6 +47,10 @@ export const handleLocation = async () => {
   }
 };
 
+export const goToFanlog = () => {
+  window.location.hash = "#fanLog";
+};
+
 export const goToAuth = () => {
   window.location.hash = "#auth";
 };
