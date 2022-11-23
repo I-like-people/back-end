@@ -29,7 +29,12 @@ export const handleLocation = async () => {
   if (path === "fanLog") {
 
     if (authService.currentUser == null) {
-      logoutgetCommentList();
+
+      document.querySelectorAll('.mypost').forEach(function (el) {
+        el.style.display = 'none';
+      }); // 로그인 하지 않은 유저가 들어왔을 때 입력창 숨기기
+
+      logoutgetCommentList(); //로그인 하지 않은 유저가 들어왔을 때 버튼 없앤 함수
 
     } else {
 
