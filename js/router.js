@@ -7,7 +7,8 @@ const routes = {
   profile: "/pages/profile.html",
   auth: "/pages/auth.html",
 };
-import { getCommentList, getMyCommentList, logoutgetCommentList } from "./pages/fanLog.js";
+import { getCommentList, logoutgetCommentList } from "./pages/fanLog.js";
+import { getMyCommentList } from "./pages/profile.js";
 
 export const handleLocation = async () => {
   let path = window.location.hash.replace("#", "");
