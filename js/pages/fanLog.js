@@ -87,12 +87,9 @@ export const getCommentList = async () => {
   const q = query(
     collection(dbService, "comments"),
     orderBy("createdAt", "desc")
-  );//데이터 불러오는 쿼리들 써서 q에 넣어준다
+  );
   const querySnapshot = await getDocs(q);
-  //getDocs에 쿼리 넣어준다
   querySnapshot.forEach((doc) => {
-    //배열을 하나씩 뽑아준다 반복문으로 하나씩 돌려주는 것과 같다.
-    //doc.data()는 이 안에서만 존째할 수 있다.
     const commentObj = {
       id: doc.id,
       ...doc.data(),
@@ -101,7 +98,7 @@ export const getCommentList = async () => {
   });
   const commnetList = document.getElementById("comment-list");
   const currentUid = authService.currentUser.uid;
-  commnetList.innerHTML = "";// 불러오기 전에 초기화(이거 안 하면 계속 반복되는 내용 쌓일 것 같다)
+  commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;
     const temp_html = `<div class="card commentCard">
@@ -121,6 +118,47 @@ export const getCommentList = async () => {
                 <button name="${cmtObj.id
       }" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
               </div>            
+            </div>
+     </div>`;
+    const div = document.createElement("div");
+    div.classList.add("mycards");
+    div.innerHTML = temp_html;
+    commnetList.appendChild(div);
+  });
+};
+
+export const logoutgetCommentList = async () => {
+  let cmtObjList = [];
+  const q = query(
+    collection(dbService, "comments"),
+    orderBy("createdAt", "desc")
+  );//데이터 불러오는 쿼리들 써서 q에 넣어준다
+  const querySnapshot = await getDocs(q);
+  //getDocs에 쿼리 넣어준다
+  querySnapshot.forEach((doc) => {
+    //배열을 하나씩 뽑아준다 반복문으로 하나씩 돌려주는 것과 같다.
+    //doc.data()는 이 안에서만 존째할 수 있다.
+    const commentObj = {
+      id: doc.id,
+      ...doc.data(),
+    };
+    cmtObjList.push(commentObj);
+  });
+  const commnetList = document.getElementById("comment-list");
+  commnetList.innerHTML = "";// 불러오기 전에 초기화(이거 안 하면 계속 반복되는 내용 쌓일 것 같다)
+  cmtObjList.forEach((cmtObj) => {
+    const temp_html = `<div class="card commentCard">
+          <div class="card-body">
+              <blockquote class="blockquote mb-0">
+                  <p class="commentText">${cmtObj.text}</p>
+                  <p id="${cmtObj.id
+      }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
+                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
+      }" alt="profileImg" /><span>${cmtObj.nickname ?? "닉네임 없음"
+      }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
+        .toString()
+        .slice(0, 25)}</div></footer>
+              </blockquote>                 
             </div>
      </div>`;
     const div = document.createElement("div");
@@ -180,3 +218,5 @@ export const getMyCommentList = async () => {
     commnetList.appendChild(div);
   });
 };
+
+
