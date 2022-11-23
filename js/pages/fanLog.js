@@ -4,6 +4,7 @@ import {
   updateDoc,
   deleteDoc,
   collection,
+  where, //where query 추가
   orderBy,
   query,
   getDocs,
@@ -85,10 +86,16 @@ export const getCommentList = async () => {
   let cmtObjList = [];
   const q = query(
     collection(dbService, "comments"),
+    where("creatorId", "==", authService.currentUser.uid),
+    //현재 유저 아이디랑 같은 글만 뽑아줘라
+    //creatorId랑 createdAt을 둘 다 반영하게 해주는 복헙색인을 생성해야한다 아니면 오류난다.
     orderBy("createdAt", "desc")
-  );
+  );//데이터 불러오는 쿼리들 써서 q에 넣어준다
   const querySnapshot = await getDocs(q);
+  //getDocs에 쿼리 넣어준다
   querySnapshot.forEach((doc) => {
+    //배열을 하나씩 뽑아준다 반복문으로 하나씩 돌려주는 것과 같다.
+    //doc.data()는 이 안에서만 존째할 수 있다.
     const commentObj = {
       id: doc.id,
       ...doc.data(),
@@ -104,22 +111,18 @@ export const getCommentList = async () => {
           <div class="card-body">
               <blockquote class="blockquote mb-0">
                   <p class="commentText">${cmtObj.text}</p>
-                  <p id="${
-                    cmtObj.id
-                  }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${
-                    cmtObj.profileImg
-                  }" alt="profileImg" /><span>${
-      cmtObj.nickname ?? "닉네임 없음"
-    }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
-      .toString()
-      .slice(0, 25)}</div></footer>
+                  <p id="${cmtObj.id
+      }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
+                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
+      }" alt="profileImg" /><span>${cmtObj.nickname ?? "닉네임 없음"
+      }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
+        .toString()
+        .slice(0, 25)}</div></footer>
               </blockquote>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
-                <button name="${
-                  cmtObj.id
-                }" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
+                <button name="${cmtObj.id
+      }" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
               </div>            
             </div>
      </div>`;
