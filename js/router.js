@@ -42,6 +42,14 @@ export const handleLocation = async () => {
       authService.currentUser.photoURL ?? "/assets/blankProfile.webp";
     document.getElementById("profileNickname").placeholder =
       authService.currentUser.displayName ?? "닉네임 없음";
+
+    document.getElementById("nickname").textContent =
+      authService.currentUser.displayName ?? "닉네임 없음";
+
+    document.getElementById("profileImg").src =
+      authService.currentUser.photoURL ?? "../assets/blankProfile.webp";
+
+    getCommentList();
   }
 };
 
