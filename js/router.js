@@ -3,7 +3,7 @@ import { authService } from "./firebase.js";
 import { getCommentList, logoutgetCommentList } from "./pages/fanLog.js";
 import { getMyCommentList } from "./pages/profile.js";
 
-import { weather } from "./pages/weather.js"
+import { gps } from "./pages/weather.js"
 
 
 const routes = {
@@ -51,7 +51,7 @@ export const handleLocation = async () => {
       document.getElementById("profileImg").src =
         authService.currentUser.photoURL ?? "../assets/blankProfile.webp";
 
-      weather();
+      gps();
 
       getCommentList();
 
