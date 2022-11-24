@@ -5,14 +5,36 @@ export const weather = () => {
     data: {},
     success: function (response) {
       const c_temp = response.main.temp
+      const icon = response.weather[0].icon
+      const city = response.name
 
       const weather = document.getElementById("weather");
       weather.innerHTML = "";
 
-      let temp_html = `${c_temp} °`
-      const div = document.createElement('div');
-      div.innerHTML = temp_html;
-      weather.appendChild(div);
+
+      const temp_html1 = `${c_temp} °`
+
+      const div1 = document.createElement('div');
+      div1.classList.add("c_temp");
+      div1.innerHTML = temp_html1;
+      weather.appendChild(div1);
+
+
+      const temp_html2 = ` <img src="http://openweathermap.org/img/wn/${icon}.png">`
+
+      const div2 = document.createElement('div');
+      div2.classList.add("c_temp");
+      div2.innerHTML = temp_html2;
+      weather.appendChild(div2);
+
+      const temp_html3 = `${city}`
+
+      const div3 = document.createElement('div');
+      div3.classList.add("c_temp");
+      div3.innerHTML = temp_html3;
+      weather.appendChild(div3);
+
+
     }
   })
 }
