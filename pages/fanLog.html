@@ -1,0 +1,47 @@
+<div>
+    <div class="mypic">
+        <h1>I like people</h1>
+        <div id="logoutBtn">
+            <form onsubmit="handleAuth(event)">
+                <div class="authInput">
+                    <div>EMAIL:</div>
+                    <input id="email" type="text" />
+                </div>
+                <div class="authInput">
+                    <div>PW:</div>
+                    <input id="pw" type="password" />
+                </div>
+                <section id="authBtnSection">
+                    <input type="submit" id="authBtn" value="로그인" />
+                    <p id="authToggle" onclick="onToggle()">회원가입 화면으로</p>
+                </section>
+            </form>
+            <section class="socialBtns">
+                <button name="google" onclick="socialLogin(event)">Google Login</button>
+                <button name="github" onclick="socialLogin(event)">Github Login</button>
+            </section>
+        </div>  
+        <div id="loginBtn">
+            <button onclick="goToProfile()">프로필 관리</button>
+            <!-- <button onclick = "location.href = '#auth', route(event)">로그인</button> --> <!--로그인 버튼 클릭시 로그인창(auth.html)으로 이동-->
+            <button onclick="logout()">로그아웃</button>
+        </div>
+    </div>
+
+    <div class="mypost">
+        <div class="form-floating mb-3">
+            <img id="profileImg" width="50px" height="50px" src="/assets/blankProfile.webp" />
+            <span id="nickname">닉네임</span>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="comment"
+                style="height: 100px"></textarea>
+            <label for="floatingTextarea2">응원댓글</label>
+        </div>
+
+        <button onclick="save_comment(event)" type="button" class="btn btn-dark">응원 남기기</button>
+    </div>
+    <div id="comment-list">
+
+    </div>
+</div>
