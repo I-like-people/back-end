@@ -2,9 +2,10 @@ import { authService } from "./firebase.js";
 
 const routes = {
   404: "/pages/404.html",
-  "/": "/pages/auth.html",
+  "/": "/pages/intro.html",
   fanLog: "/pages/fanLog.html",
   profile: "/pages/profile.html",
+  auth: "/pages/auth.html",
 };
 import { getCommentList } from "./pages/fanLog.js";
 

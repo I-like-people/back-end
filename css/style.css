@@ -74,23 +74,6 @@
   justify-content: space-around;
 }
 
-#profileMngr {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-#profileMngr > button {
-  background-color: white;
-  font-size: medium;
-  padding: 5px 10px;
-}
-
-#profileMngr > button:hover {
-  background-color: black;
-  color: white;
-}
-
 .regBtn {
   display: none;
 }
@@ -116,6 +99,7 @@
   background-color: bisque;
   min-width: 350px;
 }
+
 #authTitle {
   text-align: center;
 }
@@ -209,4 +193,40 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#logoutBtn {
+  /* display: block; */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#logoutBtn > button {
+  background-color: white;
+  font-size: medium;
+  padding: 5px 10px;
+}
+
+#logoutBtn > button:hover {
+  background-color: black;
+  color: white;
+}
+
+#loginBtn {
+  /* display: none; */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#loginBtn > button {
+  background-color: white;
+  font-size: medium;
+  padding: 5px 10px;
+}
+
+#loginBtn > button:hover {
+  background-color: black;
+  color: white;
 }

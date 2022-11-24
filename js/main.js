@@ -4,6 +4,10 @@ import { socialLogin } from "./pages/auth.js";
 import { handleLocation, goToProfile } from "./router.js";
 import { authService } from "./firebase.js";
 import {
+  // socialLogin,
+  // logout,
+  // onToggle,
+  // handleAuth,
   save_comment,
   update_comment,
   onEditing,

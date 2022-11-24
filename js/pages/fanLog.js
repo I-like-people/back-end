@@ -10,6 +10,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 import { dbService, authService } from "../firebase.js";
 
+
 export const save_comment = async (event) => {
   event.preventDefault();
   const comment = document.getElementById("comment");
@@ -22,7 +23,7 @@ export const save_comment = async (event) => {
       profileImg: photoURL,
       nickname: displayName,
     });
-    comment.value = "";
+    comment.value = " ";
     getCommentList();
   } catch (error) {
     alert(error);
