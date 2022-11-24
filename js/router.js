@@ -42,6 +42,8 @@ export const handleLocation = async () => {
 
       logoutgetCommentList(); //로그인 하지 않은 유저가 들어왔을 때 버튼 없앤 함수
 
+      gps();
+
     } else {
 
       // 로그인한 회원의 프로필사진과 닉네임을 화면에 표시해줌.
