@@ -4,7 +4,7 @@
 
 .mypic {
   width: 100%;
-  height: 300px;
+  height: 100px;
   position: relative;
   /* background-image: linear-gradient(
       0deg,
@@ -15,12 +15,12 @@
   background-position: center 19%;
   background-size: cover; */
 
-  color: white;
+  color: black;
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 100px;
+  /* padding-top: 100px; */
 }
 
 .mypost {
@@ -32,7 +32,7 @@
   padding: 20px;
 }
 
-.mypost > button {
+.mypost>button {
   margin-top: 15px;
 }
 
@@ -42,7 +42,7 @@
   margin: auto;
 }
 
-.mycards > .card {
+.mycards>.card {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -57,21 +57,30 @@
 
 .authInput {
   margin-bottom: 10px;
+  display: flex;
 }
 
-.authInput > div {
+.authInput>div {
   width: 40px;
   font-size: large;
 }
 
-.authInput > input {
+.authInput>input {
   width: 100%;
+  margin-top: 8px;
 }
 
 .socialBtns {
   display: flex;
-  width: 100%;
-  justify-content: space-around;
+  /* width: auto; */
+  justify-content: right;
+  margin-top: 8px;
+}
+
+.socialBtns > button {
+  width: 120px;
+  height: 40px;
+  font-size: 15px;
 }
 
 .regBtn {
@@ -79,8 +88,7 @@
 }
 
 #authToggle {
-  text-decoration: underline;
-  color: blue;
+  /* color: white; */
   margin: 10px 0;
   cursor: pointer;
   user-select: none;
@@ -88,8 +96,9 @@
 
 #authBtnSection {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  margin-left: 15px;
 }
 
 #authWrapper {
@@ -122,7 +131,8 @@
   padding: 20px;
   border-radius: 10px;
 }
-#profileWrapper > h2 {
+
+#profileWrapper>h2 {
   text-align: center;
 }
 
@@ -167,16 +177,20 @@
 .noDisplay {
   display: none;
 }
+
 .updateBtn {
   min-width: 70px;
 }
+
 .newCmtInput {
   width: 100%;
 }
+
 .cmtImg {
   border-radius: 50%;
   margin-right: 10px;
 }
+
 .quote-footer {
   margin-top: 20px;
   color: #6c757d;
@@ -195,40 +209,43 @@
   align-items: center;
 }
 
-#loginBox {
+.loginBox {
   /* display: block; */
-  position: absolute;
+  /* position: absolute; */
+  display: flex;
   top: 10px;
   right: 10px;
 }
 
-#loginBox > button {
+.loginBox>button {
   background-color: white;
   font-size: medium;
   padding: 5px 10px;
 }
 
-#loginBox > button:hover {
+.loginBox>button:hover {
   background-color: black;
   color: white;
 }
 
-#logoutBox {
-  position: absolute;
+.logoutBox {
+  /* position: absolute; */
+  display: flex;
   top: 10px;
   right: 10px;
+  margin-right: 25px;
 }
 
-#logoutBox > button {
-  background-color: white;
+.logoutBox>button {
+  /* background-color: white; */
   font-size: medium;
   padding: 5px 10px;
 }
 
-#logoutBox > button:hover {
-  background-color: black;
+/* .logoutBox>button:hover {
+  background-color: grey;
   color: white;
-}
+} */
 
 .flexBtn {
   justify-content: center;
@@ -236,4 +253,29 @@
 
 .homeBtn {
   border: 1px solid black;
+}
+
+#smallprofile {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.pointerCursor {
+  cursor: pointer;
+}
+
+.rightBox {
+  display: flex;
+  margin: 0 5px;
+  justify-content: right;
+}
+
+/* .feedBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
+.container {
+  max-width: 1800px;
 }

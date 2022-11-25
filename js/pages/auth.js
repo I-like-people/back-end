@@ -54,15 +54,6 @@ export const handleAuth = (event) => {
         const user = userCredential.user;
         window.location.hash = "#newsfeed";
         console.log("로그인 성공")
-        setTimeout(() => {
-          const loginBox = document.getElementById("loginBox");
-          const logoutBox = document.getElementById("logoutBox");
-          loginBox.style.display = "none";
-          logoutBox.style.display = "block";
-        }, 100);
-        // document.getElementById("loginBox").style.display = "none";
-        // document.getElementById("logoutBox").style.display = "block";
-        console.log("loginBox 가리기, logoutBox 보이기")
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -78,15 +69,10 @@ export const handleAuth = (event) => {
     // 회원가입 버튼 클릭의 경우
     createUserWithEmailAndPassword(authService, emailVal, pwVal)
       .then((userCredential) => {
-        // Signed in
-        setTimeout(() => {
-          const loginBox = document.getElementById("loginBox");
-          const logoutBox = document.getElementById("logoutBox");
-          loginBox.style.display = "none";
-          logoutBox.style.display = "block";
-        }, 100);
-        console.log("회원가입 성공!");
         const user = userCredential.user;
+        logout();
+        console.log("회원가입 성공!");
+
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -105,12 +91,10 @@ export const onToggle = () => {
   // const authTitle = document.querySelector("#authTitle");
   if (authBtn.value === "로그인") {
     authBtn.value = "회원가입";
-    authToggle.textContent = "로그인 화면으로";
-    // authTitle.textContent = "회원가입 페이지";
+    authToggle.textContent = "로그인 하기";
   } else {
     authBtn.value = "로그인";
-    authToggle.textContent = "회원가입 화면으로";
-    // authTitle.textContent = "로그인 페이지";
+    authToggle.textContent = "회원가입 하기";
   }
 };
 
@@ -140,8 +124,6 @@ export const logout = () => {
       // Sign-out successful.
       localStorage.clear();
       console.log("로그아웃 성공");
-      // document.getElementById("logoutBox").style.display = "none";
-      // document.getElementById("loginBox").style.display = "block";
     })
     .catch((error) => {
       // An error happened.
