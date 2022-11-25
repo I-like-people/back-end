@@ -24,6 +24,8 @@ export const save_comment = async (event) => {
     });
     comment.value = "";
     getCommentList();
+    alert("글 작성 완료")
+    window.location.hash = "#newsfeed";
   } catch (error) {
     alert(error);
     console.log("error in addDoc:", error);

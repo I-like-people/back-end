@@ -1,7 +1,7 @@
 import { handleAuth, onToggle, logout } from "./pages/auth.js";
 import { changeProfile, onFileChange } from "./pages/profile.js";
 import { socialLogin } from "./pages/auth.js";
-import { handleLocation, goToProfile, route, goNewsfeed, goIntro } from "./router.js";
+import { handleLocation, goToProfile, route, goNewsfeed, goIntro, goPost } from "./router.js";
 import { authService } from "./firebase.js";
 import {
   save_comment,
@@ -50,3 +50,4 @@ window.delete_comment = delete_comment;
 window.route = route;
 window.goNewsfeed = goNewsfeed;
 window.goIntro = goIntro;
+window.goPost = goPost;
