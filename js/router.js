@@ -68,6 +68,9 @@ export const handleLocation = async () => {
       document.getElementById("profileImg").src =
         authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
 
+      document.getElementById("smallprofile").src =
+        authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
+
       getCommentList();
       gps();
 

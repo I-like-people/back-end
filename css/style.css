@@ -242,3 +242,8 @@
 .homeBtn {
   border: 1px solid black;
 }
+
+#smallprofile {
+  border-radius: 50%;
+  margin-right: 10px;
+}
