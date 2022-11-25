@@ -6,11 +6,9 @@
   width: 100%;
   height: 300px;
   position: relative;
-  background-image: linear-gradient(
-      0deg,
+  background-image: linear-gradient(0deg,
       rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
-    ),
+      rgba(0, 0, 0, 0.5)),
     url("/assets/choyihyun.webp");
   background-position: center 19%;
   background-size: cover;
@@ -32,7 +30,7 @@
   padding: 20px;
 }
 
-.mypost > button {
+.mypost>button {
   margin-top: 15px;
 }
 
@@ -42,7 +40,7 @@
   margin: auto;
 }
 
-.mycards > .card {
+.mycards>.card {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -59,12 +57,12 @@
   margin-bottom: 10px;
 }
 
-.authInput > div {
+.authInput>div {
   width: 40px;
   font-size: large;
 }
 
-.authInput > input {
+.authInput>input {
   width: 100%;
 }
 
@@ -72,23 +70,6 @@
   display: flex;
   width: 100%;
   justify-content: space-around;
-}
-
-#profileMngr {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-#profileMngr > button {
-  background-color: white;
-  font-size: medium;
-  padding: 5px 10px;
-}
-
-#profileMngr > button:hover {
-  background-color: black;
-  color: white;
 }
 
 .regBtn {
@@ -116,6 +97,7 @@
   background-color: bisque;
   min-width: 350px;
 }
+
 #authTitle {
   text-align: center;
 }
@@ -138,7 +120,8 @@
   padding: 20px;
   border-radius: 10px;
 }
-#profileWrapper > h2 {
+
+#profileWrapper>h2 {
   text-align: center;
 }
 
@@ -183,16 +166,20 @@
 .noDisplay {
   display: none;
 }
+
 .updateBtn {
   min-width: 70px;
 }
+
 .newCmtInput {
   width: 100%;
 }
+
 .cmtImg {
   border-radius: 50%;
   margin-right: 10px;
 }
+
 .quote-footer {
   margin-top: 20px;
   color: #6c757d;
@@ -209,4 +196,40 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#logoutBtn {
+  /* display: block; */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#logoutBtn>button {
+  background-color: white;
+  font-size: medium;
+  padding: 5px 10px;
+}
+
+#logoutBtn>button:hover {
+  background-color: black;
+  color: white;
+}
+
+#loginBtn {
+  /* display: none; */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#loginBtn>button {
+  background-color: white;
+  font-size: medium;
+  padding: 5px 10px;
+}
+
+#loginBtn>button:hover {
+  background-color: black;
+  color: white;
 }
