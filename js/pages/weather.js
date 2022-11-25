@@ -5,7 +5,7 @@ const success = (position) => {
 }
 
 const error = () => {
-  alert('Sorry, no position available.');
+  console.log('Sorry, no position available.');
 }
 
 const options = {

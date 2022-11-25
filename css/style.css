@@ -200,37 +200,37 @@
   align-items: center;
 }
 
-#loginBox {
+.loginBox {
   /* display: block; */
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
-#loginBox>button {
+.loginBox>button {
   background-color: white;
   font-size: medium;
   padding: 5px 10px;
 }
 
-#loginBox>button:hover {
+.loginBox>button:hover {
   background-color: black;
   color: white;
 }
 
-#logoutBox {
+.logoutBox {
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
-#logoutBox>button {
+.logoutBox>button {
   background-color: white;
   font-size: medium;
   padding: 5px 10px;
 }
 
-#logoutBox>button:hover {
+.logoutBox>button:hover {
   background-color: black;
   color: white;
 }

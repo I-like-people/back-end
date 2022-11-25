@@ -39,36 +39,39 @@ export const handleLocation = async () => {
   // 특정 화면 렌더링 되자마자 DOM 조작 처리
   if (path === "newsfeed") {
 
-    const loginBox = document.getElementById("loginBox");
-    const logoutBox = document.getElementById("logoutBox");
-    loginBox.style.display = "block";
-    logoutBox.style.display = "none";
-
     // 로그인한 회원의 프로필사진과 닉네임을 화면에 표시해줌.
-    document.getElementById("nickname").textContent =
-      authService.currentUser?.displayName ?? "닉네임 없음";
-
-    document.getElementById("profileImg").src =
-      authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
-
-    gps();
-    getCommentList();
 
 
-    // if (authService.currentUser == null) {
+    if (authService.currentUser == null) {
 
-    //   document.querySelectorAll('.mypost').forEach(function (el) {
-    //     el.style.display = 'none';
-    //   }); // 로그인 하지 않은 유저가 들어왔을 때 입력창 숨기기
-    //   logoutgetCommentList(); //로그인 하지 않은 유저가 들어왔을 때 버튼 없앤 함수
-    //   gps();
+      document.querySelectorAll('.mypost').forEach(function (el) {
+        el.style.display = 'none';
+      });
 
-    // } else {
+      document.querySelectorAll('.logoutBox').forEach(function (el) {
+        el.style.display = 'none';
+      });
 
-    // gps();
-    // getCommentList();
 
-    // }
+      logoutgetCommentList();
+      gps();
+
+    } else {
+
+      document.querySelectorAll('.loginBox').forEach(function (el) {
+        el.style.display = 'none';
+      });
+
+      document.getElementById("nickname").textContent =
+        authService.currentUser?.displayName ?? "닉네임 없음";
+
+      document.getElementById("profileImg").src =
+        authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
+
+      getCommentList();
+      gps();
+
+    }
   }
 
   if (path === "profile") {
@@ -88,11 +91,8 @@ export const goToProfile = () => {
 
 export const goNewsfeed = () => {
   window.location.hash = "#newsfeed";
-  setTimeout(() => {
-    const loginBox = document.getElementById("loginBox");
-    const logoutBox = document.getElementById("logoutBox");
-    loginBox.style.display = "none";
-    logoutBox.style.display = "block";
-  }, 100);
-  console.log("goNewsfeed", goNewsfeed);
+}
+
+export const goIntro = () => {
+  window.location.hash = "/";
 }

@@ -1,7 +1,9 @@
 <div>
     <div class="mypic">
         <h1>I like people</h1>
-        <div id="loginBox">
+        <button onclick="goIntro()">배너로(임시)</button>
+
+        <div class="loginBox">
             <form onsubmit="handleAuth(event)">
                 <div class="authInput">
                     <div>EMAIL:</div>
@@ -21,11 +23,12 @@
                 <button name="github" onclick="socialLogin(event)">Github Login</button>
             </section>
         </div>
-        <div id="logoutBox">
+        <div class="logoutBox">
             <button onclick="goToProfile()">프로필 관리</button>
             <!-- <button onclick = "location.href = '#auth', route(event)">로그인</button> -->
             <!--로그인 버튼 클릭시 로그인창(auth.html)으로 이동-->
             <button onclick="logout()">로그아웃</button>
+
         </div>
     </div>
 
