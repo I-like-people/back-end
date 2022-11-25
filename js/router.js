@@ -51,20 +51,24 @@ export const handleLocation = async () => {
     document.getElementById("profileImg").src =
       authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
 
-    if (authService.currentUser == null) {
+    gps();
+    getCommentList();
 
-      document.querySelectorAll('.mypost').forEach(function (el) {
-        el.style.display = 'none';
-      }); // 로그인 하지 않은 유저가 들어왔을 때 입력창 숨기기
-      logoutgetCommentList(); //로그인 하지 않은 유저가 들어왔을 때 버튼 없앤 함수
-      gps();
 
-    } else {
+    // if (authService.currentUser == null) {
 
-      gps();
-      getCommentList();
+    //   document.querySelectorAll('.mypost').forEach(function (el) {
+    //     el.style.display = 'none';
+    //   }); // 로그인 하지 않은 유저가 들어왔을 때 입력창 숨기기
+    //   logoutgetCommentList(); //로그인 하지 않은 유저가 들어왔을 때 버튼 없앤 함수
+    //   gps();
 
-    }
+    // } else {
+
+    // gps();
+    // getCommentList();
+
+    // }
   }
 
   if (path === "profile") {
