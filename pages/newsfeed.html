@@ -1,7 +1,7 @@
 <div>
     <div class="mypic">
         <h1>I like people</h1>
-        <div id="logoutBtn">
+        <div id="loginBox">
             <form onsubmit="handleAuth(event)">
                 <div class="authInput">
                     <div>EMAIL:</div>
@@ -21,7 +21,7 @@
                 <button name="github" onclick="socialLogin(event)">Github Login</button>
             </section>
         </div>
-        <div id="loginBtn">
+        <div id="logoutBox">
             <button onclick="goToProfile()">프로필 관리</button>
             <!-- <button onclick = "location.href = '#auth', route(event)">로그인</button> -->
             <!--로그인 버튼 클릭시 로그인창(auth.html)으로 이동-->
@@ -30,7 +30,6 @@
     </div>
 
     <div id="weather">
-
     </div>
 
     <div class="mypost">
@@ -41,13 +40,11 @@
         <div class="form-floating">
             <textarea class="form-control" placeholder="Leave a comment here" id="comment"
                 style="height: 100px"></textarea>
-            <label for="floatingTextarea2">응원댓글</label>
+            <label for="floatingTextarea2">게시물</label>
         </div>
 
-        <button onclick="save_comment(event)" type="button" class="btn btn-dark">응원 남기기</button>
+        <button onclick="save_comment(event)" type="button" class="btn btn-dark">게시물 등록</button>
     </div>
-
 </div>
 <div id="comment-list">
-
 </div>

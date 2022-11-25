@@ -96,7 +96,7 @@ export const getCommentList = async () => {
     cmtObjList.push(commentObj);
   });
   const commnetList = document.getElementById("comment-list");
-  const currentUid = authService.currentUser.uid;
+  const currentUid = authService.currentUser?.uid;
   commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
     const isOwner = currentUid === cmtObj.creatorId;

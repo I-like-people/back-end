@@ -21,29 +21,28 @@ export const changeProfile = async (event) => {
     storageService,
     `${authService.currentUser.uid}/${uuidv4()}`
   );
-  //파이어스토어 안의 위치의 어떤 파일에 저장할 건지 정해준 것
-  // 유저id 파일안에 이미지 파일 uuid를 넣어주었다.
 
   const newNickname = document.getElementById("profileNickname").value;
   // 프로필 이미지 dataUrl을 Storage에 업로드 후 다운로드 링크를 받아서 photoURL에 저장.
-
   const imgDataUrl = localStorage.getItem("imgDataUrl");
-  //onFileChange함수에서 임시저장해두었던 imgDataUrl을 가져온다
-
   let downloadUrl;
   if (imgDataUrl) {
-    const response = await uploadString(imgRef, imgDataUrl, "data_url");//ImgDataUrl을 storage로 보낸다. response는 정상적으로 storage에 업로드되었으면 결과로 오는 값
-
+    const response = await uploadString(imgRef, imgDataUrl, "data_url");
     downloadUrl = await getDownloadURL(response.ref);
-  }//response 안의 ref 인자로 넣어서 다운로드 해주면 downloadUrl이 된다.
-
+  }
   await updateProfile(authService.currentUser, {
     displayName: newNickname ? newNickname : null,
     photoURL: downloadUrl ? downloadUrl : null,
   })
     .then(() => {
       alert("프로필 수정 완료");
-      window.location.hash = "#fanLog";
+      window.location.hash = "#newsfeed";
+      setTimeout(() => {
+        const loginBox = document.getElementById("loginBox");
+        const logoutBox = document.getElementById("logoutBox");
+        loginBox.style.display = "none";
+        logoutBox.style.display = "block";
+      }, 100);
     })
     .catch((error) => {
       alert("프로필 수정 실패");

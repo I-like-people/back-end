@@ -45,14 +45,24 @@ export const handleAuth = (event) => {
 
   // 유효성 검사 통과 후 로그인 또는 회원가입 API 요청
   const authBtnText = document.querySelector("#authBtn").value;
+  console.log("authBtnText:", authBtnText);
   if (authBtnText === "로그인") {
-    // 유효성검사 후 로그인 성공 시 팬명록 화면으로
-
+    // 유효성검사 후 로그인 성공 시 뉴스피드 화면으로
     signInWithEmailAndPassword(authService, emailVal, pwVal)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        window.location.hash = "#fanLog";
+        window.location.hash = "#newsfeed";
+        console.log("로그인 성공")
+        setTimeout(() => {
+          const loginBox = document.getElementById("loginBox");
+          const logoutBox = document.getElementById("logoutBox");
+          loginBox.style.display = "none";
+          logoutBox.style.display = "block";
+        }, 100);
+        // document.getElementById("loginBox").style.display = "none";
+        // document.getElementById("logoutBox").style.display = "block";
+        console.log("loginBox 가리기, logoutBox 보이기")
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -69,8 +79,14 @@ export const handleAuth = (event) => {
     createUserWithEmailAndPassword(authService, emailVal, pwVal)
       .then((userCredential) => {
         // Signed in
+        setTimeout(() => {
+          const loginBox = document.getElementById("loginBox");
+          const logoutBox = document.getElementById("logoutBox");
+          loginBox.style.display = "none";
+          logoutBox.style.display = "block";
+        }, 100);
         console.log("회원가입 성공!");
-        // const user = userCredential.user;
+        const user = userCredential.user;
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -86,15 +102,15 @@ export const handleAuth = (event) => {
 export const onToggle = () => {
   const authBtn = document.querySelector("#authBtn");
   const authToggle = document.querySelector("#authToggle");
-  const authTitle = document.querySelector("#authTitle");
+  // const authTitle = document.querySelector("#authTitle");
   if (authBtn.value === "로그인") {
     authBtn.value = "회원가입";
     authToggle.textContent = "로그인 화면으로";
-    authTitle.textContent = "회원가입 페이지";
+    // authTitle.textContent = "회원가입 페이지";
   } else {
     authBtn.value = "로그인";
     authToggle.textContent = "회원가입 화면으로";
-    authTitle.textContent = "로그인 페이지";
+    // authTitle.textContent = "로그인 페이지";
   }
 };
 
