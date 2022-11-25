@@ -8,7 +8,7 @@ import { gps } from "./pages/weather.js"
 
 const routes = {
   404: "/pages/404.html",
-  "/": "/pages/home.html",
+  "/": "/pages/intro.html",
   fanLog: "/pages/fanLog.html",
   profile: "/pages/profile.html",
   auth: "/pages/auth.html",
