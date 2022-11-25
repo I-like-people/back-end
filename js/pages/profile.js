@@ -29,7 +29,13 @@ export const changeProfile = async (event) => {
   })
     .then(() => {
       alert("프로필 수정 완료");
-      window.location.hash = "#fanLog";
+      window.location.hash = "#newsfeed";
+      setTimeout(() => {
+        const loginBox = document.getElementById("loginBox");
+        const logoutBox = document.getElementById("logoutBox");
+        loginBox.style.display = "none";
+        logoutBox.style.display = "block";
+      }, 100);
     })
     .catch((error) => {
       alert("프로필 수정 실패");

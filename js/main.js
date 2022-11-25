@@ -1,18 +1,14 @@
 import { handleAuth, onToggle, logout } from "./pages/auth.js";
 import { changeProfile, onFileChange } from "./pages/profile.js";
 import { socialLogin } from "./pages/auth.js";
-import { handleLocation, goToProfile } from "./router.js";
+import { handleLocation, goToProfile, route, goNewsfeed } from "./router.js";
 import { authService } from "./firebase.js";
 import {
-  // socialLogin,
-  // logout,
-  // onToggle,
-  // handleAuth,
   save_comment,
   update_comment,
   onEditing,
   delete_comment,
-} from "./pages/fanLog.js";
+} from "./pages/newsfeed.js";
 
 // url 바뀌면 handleLocation 실행하여 화면 변경
 window.addEventListener("hashchange", handleLocation);
@@ -21,19 +17,27 @@ window.addEventListener("hashchange", handleLocation);
 document.addEventListener("DOMContentLoaded", function () {
   // Firebase 연결상태를 감시
   authService.onAuthStateChanged((user) => {
+    
     // Firebase 연결되면 화면 표시
     handleLocation();
     const hash = window.location.hash;
     if (user) {
+      // 새로고침시 로그인 상태면 logoutBox block 유지
+      setTimeout(() => {
+        const loginBox = document.getElementById("loginBox");
+        const logoutBox = document.getElementById("logoutBox");
+        loginBox.style.display = "none";
+        logoutBox.style.display = "block";
+      }, 100);
       // 로그인 상태이므로 항상 팬명록 화면으로 이동
       if (hash === "") {
         // 로그인 상태에서는 로그인 화면으로 되돌아갈 수 없게 설정
-        window.location.replace("#fanLog");
+        // window.location.replace("#newsfeed");
       }
     } else {
       // 로그아웃 상태이므로 로그인 화면으로 강제 이동
       if (hash !== "") {
-        window.location.replace("");
+        // window.location.replace("");
       }
     }
   });
@@ -51,3 +55,5 @@ window.save_comment = save_comment;
 window.update_comment = update_comment;
 window.onEditing = onEditing;
 window.delete_comment = delete_comment;
+window.route = route;
+window.goNewsfeed = goNewsfeed;
