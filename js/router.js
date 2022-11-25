@@ -42,9 +42,9 @@ export const handleLocation = async () => {
     gps();
     if (authService.currentUser == null) {
 
-      // document.querySelectorAll('.mypost').forEach(function (el) {
-      //   el.style.display = 'none';
-      // });
+      const postBtn = document.getElementById("postBtn");
+      postBtn.style.display = "none";
+
       document.querySelectorAll('.logoutBox').forEach(function (el) {
         el.style.display = 'none';
       });
@@ -53,11 +53,7 @@ export const handleLocation = async () => {
       document.querySelectorAll('.loginBox').forEach(function (el) {
         el.style.display = 'none';
       });
-      // document.getElementById("nickname").textContent =
-      //   authService.currentUser?.displayName ?? "닉네임 없음";
 
-      // document.getElementById("profileImg").src =
-      //   authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
       document.getElementById("smallprofile").src =
         authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
       getCommentList();
