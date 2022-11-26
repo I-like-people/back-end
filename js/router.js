@@ -39,42 +39,24 @@ export const handleLocation = async () => {
 
   // 특정 화면 렌더링 되자마자 DOM 조작 처리
   if (path === "newsfeed") {
-
-    // 로그인한 회원의 프로필사진과 닉네임을 화면에 표시해줌.
-
-
+    gps();
     if (authService.currentUser == null) {
 
-      document.querySelectorAll('.mypost').forEach(function (el) {
-        el.style.display = 'none';
-      });
+      const postBtn = document.getElementById("postBtn");
+      postBtn.style.display = "none";
 
       document.querySelectorAll('.logoutBox').forEach(function (el) {
         el.style.display = 'none';
       });
-
-
       logoutgetCommentList();
-      gps();
-
     } else {
-
       document.querySelectorAll('.loginBox').forEach(function (el) {
         el.style.display = 'none';
       });
 
-      document.getElementById("nickname").textContent =
-        authService.currentUser?.displayName ?? "닉네임 없음";
-
-      document.getElementById("profileImg").src =
-        authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
-
       document.getElementById("smallprofile").src =
         authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
-
       getCommentList();
-      gps();
-
     }
   }
 
@@ -87,6 +69,20 @@ export const handleLocation = async () => {
     getMyCommentList();
 
   }
+
+  if (path === "post") {
+    // 프로필 관리 화면 일 때 현재 프로필 사진과 닉네임 할당
+    document.getElementById("nickname").textContent =
+      authService.currentUser?.displayName ?? "닉네임 없음";
+
+    document.getElementById("profileImg").src =
+      authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
+    getCommentList();
+
+  }
+
+
+
 };
 
 export const goToProfile = () => {
@@ -99,4 +95,8 @@ export const goNewsfeed = () => {
 
 export const goIntro = () => {
   window.location.hash = "/";
+}
+
+export const goPost = () => {
+  window.location.hash = "#post";
 }
