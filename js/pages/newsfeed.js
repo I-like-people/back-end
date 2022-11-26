@@ -168,4 +168,3 @@ export const logoutgetCommentList = async () => {
     commnetList.appendChild(div);
   });
 };
-
