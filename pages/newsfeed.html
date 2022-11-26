@@ -3,9 +3,11 @@
     <div>
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-          <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-            <use xlink:href="#bootstrap" />
-          </svg>
+          <<<<<<< HEAD=======<h1 style="margin-left:55px" class="text-white">I like people</h1>
+            >>>>>>> origin/main
+            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+              <use xlink:href="#bootstrap" />
+            </svg>
         </a>
 
         <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
@@ -81,23 +83,23 @@
           </section>
         </div>
         <div class="logoutBox">
+          <button class="btn btn-outline-primary" id="postBtn" onclick="goPost()">피드 올리기</button>
           <img id="smallprofile" width="50px" height="50px" src="/assets/blankProfile.webp" onclick="goToProfile()"
             class="pointerCursor" />
           <!-- <button onclick="goToProfile()" class="btn btn-light text-dark me-2">프로필 관리</button> -->
           <!-- <button onclick = "location.href = '#auth', route(event)">로그인</button> -->
           <!--로그인 버튼 클릭시 로그인창(auth.html)으로 이동-->
-          <button id="postBtn" onclick="goPost()">피드 올리기</button>
-          <button onclick="logout()" class="btn btn-secondary" style="margin-left:40px; width:140px">로그아웃</button>
+          <button onclick="logout()" class="btn btn-secondary" style="margin-left:4px; width:140px">로그아웃</button>
 
         </div>
       </div>
     </div>
   </div>
-  <div id="weather">
+  <div id="weather" class="weatherbox">
   </div>
-  <div class="mypic">
+  <!-- <div class="mypic">
     <h1>I like people</h1>
-  </div>
+  </div> -->
 
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -145,8 +147,8 @@
     </main>
   </body>
 
-  <div id="weather">
-  </div>
+  <!-- <div id="weather">
+  </div> -->
 
 </div>
 <div id="comment-list">

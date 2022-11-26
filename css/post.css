@@ -127,14 +127,14 @@
     font-family: Pretendard;
   }
 .weatherbox {
-  width: 12rem;
-  height: 12rem;
-  margin: 2rem;
+  width: 30px;
+  height: 30px;
+  margin: 35px 0px 35px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
-  background-color: #febf00;
+  font-size: 14px;
+  background-color: #212529;
   transition: .50s;  
   top:100%;
   right: 100%;
