@@ -1,0 +1,28 @@
+<div id="profilePage">
+    <section id="profileWrapper">
+        <h2>프로필 관리</h2>
+        <form id="profileForm" onsubmit="changeProfile(event)">
+
+
+            <label id="imgLabel" for="imgInput">
+                <img id="profileView" src="/assets/blankProfile.webp" />
+                <input onchange="onFileChange(event)" id="imgInput" type="file" accept="images/*" />
+            </label>
+            <div>
+                <input id="profileNickname" type="text" placeholder="현재 닉네임" value="" />
+            </div>
+            <br />
+            <div class="flexBtn">
+                <input class="btn btn-outline-secondary" id="profileBtn" type="submit" value="프로필 변경" />
+                <input type="button" value="홈으로" onclick="goNewsfeed()" class="homeBtn btn btn-outline-secondary" />
+            </div>
+        </form>
+    </section>
+</div>
+
+
+<div>
+    <div id="my-comment-list">
+
+    </div>
+</div>
