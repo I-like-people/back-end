@@ -4,6 +4,8 @@ import { socialLogin } from "./pages/auth.js";
 import { handleLocation, goToProfile, route, goNewsfeed, goIntro, goPost } from "./router.js";
 import { authService } from "./firebase.js";
 import {
+  onFileChangeFeed,
+  onFileChangeComment,
   save_comment,
   update_comment,
   onEditing,
@@ -51,3 +53,5 @@ window.route = route;
 window.goNewsfeed = goNewsfeed;
 window.goIntro = goIntro;
 window.goPost = goPost;
+window.onFileChangeFeed = onFileChangeFeed;
+window.onFileChangeComment = onFileChangeComment;

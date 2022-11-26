@@ -8,10 +8,33 @@ import {
   query,
   getDocs,
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
-import { dbService, authService } from "../firebase.js";
+
+import { authService, storageService, dbService } from "../firebase.js";
+import {
+  ref,
+  uploadString,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
+
+import { getMyCommentList } from "../pages/profile.js"
 
 export const save_comment = async (event) => {
   event.preventDefault();
+
+  const imgRef = ref(
+    storageService,
+    `${authService.currentUser.uid}/${uuidv4()}`
+  );
+  // 프로필 이미지 dataUrl을 Storage에 업로드 후 다운로드 링크를 받아서 photoURL에 저장.
+  const imgDataUrl = localStorage.getItem("imgDataUrl");
+  let downloadUrl;
+  if (imgDataUrl) {
+    const response = await uploadString(imgRef, imgDataUrl, "data_url");
+    downloadUrl = await getDownloadURL(response.ref);
+  }
+
   const comment = document.getElementById("comment");
   const { uid, photoURL, displayName } = authService.currentUser;
   try {
@@ -21,10 +44,12 @@ export const save_comment = async (event) => {
       creatorId: uid,
       profileImg: photoURL,
       nickname: displayName,
+      feedImg: downloadUrl,
     });
     comment.value = "";
     getCommentList();
     alert("글 작성 완료")
+    localStorage.clear();
     window.location.hash = "#newsfeed";
   } catch (error) {
     alert(error);
@@ -41,10 +66,13 @@ export const onEditing = (event) => {
   const cardBody = event.target.parentNode.parentNode;
   const commentText = cardBody.children[0].children[0];
   const commentInputP = cardBody.children[0].children[1];
+  const commentFile = cardBody.children[0].children[2];
 
   commentText.classList.add("noDisplay");
   commentInputP.classList.add("d-flex");
   commentInputP.classList.remove("noDisplay");
+  commentFile.classList.add("d-flex");
+  commentFile.classList.remove("noDisplay");
   commentInputP.children[0].focus();
 };
 
@@ -53,17 +81,33 @@ export const update_comment = async (event) => {
   const newComment = event.target.parentNode.children[0].value;
   const id = event.target.parentNode.id;
 
-  const parentNode = event.target.parentNode.parentNode;
-  const commentText = parentNode.children[0];
-  commentText.classList.remove("noDisplay");
-  const commentInputP = parentNode.children[1];
-  commentInputP.classList.remove("d-flex");
-  commentInputP.classList.add("noDisplay");
+  // const parentNode = event.target.parentNode.parentNode;
+  // const commentText = parentNode.children[0];
+  // commentText.classList.remove("noDisplay");
+  // const commentInputP = parentNode.children[1];
+  // commentInputP.classList.remove("d-flex");
+  // commentInputP.classList.add("noDisplay");
+  // const commentfile = parentNode.children[2]
+  // commentfile.classList.remove("d-flex");
+  // commentfile.classList.add("noDisplay");
+  const imgRef = ref(
+    storageService,
+    `${authService.currentUser.uid}/${uuidv4()}`
+  );
+  // 프로필 이미지 dataUrl을 Storage에 업로드 후 다운로드 링크를 받아서 photoURL에 저장.
+  const imgDataUrl = localStorage.getItem("imgDataUrl");
+  let downloadUrl;
+  if (imgDataUrl) {
+    const response = await uploadString(imgRef, imgDataUrl, "data_url");
+    downloadUrl = await getDownloadURL(response.ref);
+  }
 
   const commentRef = doc(dbService, "comments", id);
   try {
-    await updateDoc(commentRef, { text: newComment });
+    await updateDoc(commentRef, { text: newComment, feedImg: downloadUrl });
+    localStorage.clear();
     getCommentList();
+    getMyCommentList();
   } catch (error) {
     alert(error);
   }
@@ -72,16 +116,19 @@ export const update_comment = async (event) => {
 export const delete_comment = async (event) => {
   event.preventDefault();
   const id = event.target.name;
-  const ok = window.confirm("해당 응원글을 정말 삭제하시겠습니까?");
+  const ok = window.confirm("해당 글을 정말 삭제하시겠습니까?");
   if (ok) {
     try {
       await deleteDoc(doc(dbService, "comments", id));
       getCommentList();
+      getMyCommentList();
     } catch (error) {
       alert(error);
     }
   }
 };
+
+
 
 export const getCommentList = async () => {
   let cmtObjList = [];
@@ -97,7 +144,8 @@ export const getCommentList = async () => {
     };
     cmtObjList.push(commentObj);
   });
-  const commnetList = document.getElementById("comment-list");
+
+  const commnetList = document.getElementById("Mainbox js-loop");
   const currentUid = authService.currentUser?.uid;
   commnetList.innerHTML = "";
   cmtObjList.forEach((cmtObj) => {
@@ -106,13 +154,24 @@ export const getCommentList = async () => {
           <div class="card-body">
               <blockquote class="blockquote mb-0">
                   <p class="commentText">${cmtObj.text}</p>
-                  <p id="${cmtObj.id
-      }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
-      }" alt="profileImg" /><span>${cmtObj.nickname ?? "닉네임 없음"
-      }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
-        .toString()
-        .slice(0, 25)}</div></footer>
+                  <p id="${cmtObj.id}" class="noDisplay"> 
+                  <input class="newCmtInput" type="text" maxlength="100" />
+      <button class="updateBtn" onclick="update_comment(event)">완료</button>
+      </p>
+      <p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
+      <p> <img id="feedImg" src="${cmtObj.feedImg
+      }" height="150px"></p>
+        
+                  <footer class="quote-footer">
+                  <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
+      }" alt="profileImg" />
+      
+      <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
+      </div>
+      
+      <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>
+      </footer>
+
               </blockquote>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
@@ -125,6 +184,7 @@ export const getCommentList = async () => {
     div.classList.add("mycards");
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
+
   });
 };
 
@@ -145,7 +205,7 @@ export const logoutgetCommentList = async () => {
     };
     cmtObjList.push(commentObj);
   });
-  const commnetList = document.getElementById("comment-list");
+  const commnetList = document.getElementById("Mainbox js-loop");
   commnetList.innerHTML = "";// 불러오기 전에 초기화(이거 안 하면 계속 반복되는 내용 쌓일 것 같다)
   cmtObjList.forEach((cmtObj) => {
     const temp_html = `<div class="card commentCard">
@@ -154,6 +214,8 @@ export const logoutgetCommentList = async () => {
                   <p class="commentText">${cmtObj.text}</p>
                   <p id="${cmtObj.id
       }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
+      <p> <img id="feedImg" src="${cmtObj.feedImg
+      }" height="150px"></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
       }" alt="profileImg" /><span>${cmtObj.nickname ?? "닉네임 없음"
       }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
@@ -168,4 +230,42 @@ export const logoutgetCommentList = async () => {
     commnetList.appendChild(div);
   });
 };
+
+export const onFileChangeFeed = (event) => {
+  const theFile = event.target.files[0]; // file 객체
+  const reader = new FileReader();
+  reader.readAsDataURL(theFile);
+  // file 객체를 브라우저가 읽을 수 있는 data URL로 읽음.
+
+  reader.onloadend = (finishedEvent) => {
+    // 파일리더가 파일객체를 data URL로 변환 작업을 끝났을 때
+
+    const imgDataUrl = finishedEvent.currentTarget.result;
+    localStorage.setItem("imgDataUrl", imgDataUrl);
+    //변경한 이미지 파일이 바로 서버로 가지않고 프로필 변경을 누르기 전까지 잠시 로컬 스토리지에 저장되어있게하기(임시보관용으로 localstorage는 유용하다)
+    // document.getElementById("feedView").src = imgDataUrl;
+    //임시보관이어도 화면에는 보여진다.
+    document.getElementById("feedView").src = imgDataUrl;
+  };
+};
+
+export const onFileChangeComment = (event) => {
+  const theFile = event.target.files[0]; // file 객체
+  const reader = new FileReader();
+  reader.readAsDataURL(theFile);
+  // file 객체를 브라우저가 읽을 수 있는 data URL로 읽음.
+
+  reader.onloadend = (finishedEvent) => {
+    // 파일리더가 파일객체를 data URL로 변환 작업을 끝났을 때
+
+    const imgDataUrl = finishedEvent.currentTarget.result;
+    localStorage.setItem("imgDataUrl", imgDataUrl);
+    //변경한 이미지 파일이 바로 서버로 가지않고 프로필 변경을 누르기 전까지 잠시 로컬 스토리지에 저장되어있게하기(임시보관용으로 localstorage는 유용하다)
+    // document.getElementById("feedView").src = imgDataUrl;
+    //임시보관이어도 화면에는 보여진다.
+    document.getElementById("feedImg").src = imgDataUrl;
+  };
+};
+
+
 
