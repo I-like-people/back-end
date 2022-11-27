@@ -90,13 +90,25 @@ export const getMyCommentList = async () => {
           <div class="card-body">
               <blockquote class="blockquote mb-0">
                   <p class="commentText">${cmtObj.text}</p>
-                  <p id="${cmtObj.id
-      }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
-      }" alt="profileImg" /><span>${cmtObj.nickname ?? "닉네임 없음"
-      }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
-        .toString()
-        .slice(0, 25)}</div></footer>
+                  <p id="${cmtObj.id}" class="noDisplay"> 
+                  <input class="newCmtInput" type="text" maxlength="100" />
+      <button class="updateBtn" onclick="update_comment(event)">완료</button>
+      </p>
+      <p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
+      <p> <img id="feedImg" src="${cmtObj.feedImg
+      }" height="150px"></p>
+        
+
+                  <footer class="quote-footer">
+                  <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
+      }" alt="profileImg" />
+      
+      <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
+      </div>
+      
+      <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>
+      </footer>
+
               </blockquote>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>

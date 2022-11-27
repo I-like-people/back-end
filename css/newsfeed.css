@@ -65,7 +65,7 @@
     -webkit-overflow-scrolling: touch;
   }
   .Mainbox {
-    width: 70rem;
+    width: 200rem;
     height: 680px;
     position: relative;
     justify-content: center;
@@ -127,32 +127,15 @@
     font-family: Pretendard;
   }
 .weatherbox {
-  width: 0px;
-  height: 55px;
-  margin-left: 60px;
+  width: 40px;
+  height: 40px;
+  margin: 35px 0px 35px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 14px;
   background-color: #ffffff;
   transition: .50s;  
-  top: 100%;
+  top:100%;
   right: 100%;
 }
-
-.weatherLine {
-  display: flex;
-}
-
-.weatherLine > div {
-  width: 60px;
-  font-weight: bold;
-}
-
-/* .postFeedimg {
-  float: right;
-}
-
-.postComment {
-  float: left;
-} */
