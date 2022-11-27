@@ -12,6 +12,7 @@ import {
   delete_comment,
 } from "./pages/newsfeed.js";
 
+
 // url 바뀌면 handleLocation 실행하여 화면 변경
 window.addEventListener("hashchange", handleLocation);
 
