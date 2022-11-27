@@ -37,14 +37,13 @@
 }
 
 .mycards {
-  width: 95%;
-  max-width: 500px;
+  width: 1000px;
   margin: auto;
 }
 
 .mycards>.card {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #authPage {
