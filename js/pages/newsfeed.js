@@ -166,7 +166,7 @@ export const getCommentList = async () => {
                   <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
       }" alt="profileImg" />
       
-      <span>${cmtObj.nickname ?? "닉네임 없음"}</span>
+      <span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"}</span>
       </div>
       
       <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>
@@ -217,7 +217,7 @@ export const logoutgetCommentList = async () => {
       <p> <img id="feedImg" src="${cmtObj.feedImg
       }" height="150px"></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
-      }" alt="profileImg" /><span>${cmtObj.nickname ?? "닉네임 없음"
+      }" alt="profileImg" /><span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"
       }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
         .toString()
         .slice(0, 25)}</div></footer>

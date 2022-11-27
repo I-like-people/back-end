@@ -57,10 +57,13 @@
   <div class="px-3 py-2 border-bottom mb-3">
     <div class="d-flex flex-wrap justify-content-center">
       <div id="weather" class="weatherbox"></div>
+      <!-- 피드 글 서치기능 -->
       <form class="col-12 col-lg-auto mb-2 mb-lg-0 me-lg-auto" role="search">
         <input type="search" class="form-control" placeholder="Search..." aria-label="Search"
-          style="margin:10px 0px 0px 65px">
+          style="margin:10px 0px 0px 65px" onkeyup="filterword()" id="search">
       </form>
+
+
 
       <div class="text-end">
         <div class="loginBox">
@@ -109,6 +112,8 @@
     <button onclick="keywordSearch()" class="btn btn-outline-secondary">검색</button>
 
   </div>
+
+
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 16 16">
@@ -198,4 +203,4 @@
         <section class="box is-clone"><img src="/img/KakaoTalk_20220308_030042073_08.jpg"></section>
         <section class="box is-clone"><img src="/img/KakaoTalk_20221104_230950913_11.jpg"></section>
       </main>
-</body> -->
+</body> 

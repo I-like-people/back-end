@@ -16,7 +16,7 @@ const observer = new IntersectionObserver(entries => {
   });
 }, options);
 
-const boxList = document.querySelectorAll('.box','.box img');
+const boxList = document.querySelectorAll('.box', '.box img');
 
 // 반복문을 돌려 모든 DOM에 적용
 boxList.forEach(el => observer.observe(el));
@@ -112,8 +112,8 @@ window.onload = function () {
   setScrollPos(
     Math.round(
       clones[0].getBoundingClientRect().top +
-        getScrollPos() -
-        (context.offsetHeight - clones[0].offsetHeight) / 2
+      getScrollPos() -
+      (context.offsetHeight - clones[0].offsetHeight) / 2
     )
   );
 };

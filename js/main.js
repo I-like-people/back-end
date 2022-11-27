@@ -12,6 +12,8 @@ import {
   delete_comment,
 } from "./pages/newsfeed.js";
 
+import { filterword } from "./pages/search.js"
+
 // url 바뀌면 handleLocation 실행하여 화면 변경
 window.addEventListener("hashchange", handleLocation);
 
@@ -55,3 +57,4 @@ window.goIntro = goIntro;
 window.goPost = goPost;
 window.onFileChangeFeed = onFileChangeFeed;
 window.onFileChangeComment = onFileChangeComment;
+window.filterword = filterword;
