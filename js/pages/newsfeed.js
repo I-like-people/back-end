@@ -82,15 +82,6 @@ export const update_comment = async (event) => {
   const newComment = event.target.parentNode.children[0].value;
   const id = event.target.parentNode.id;
 
-  // const parentNode = event.target.parentNode.parentNode;
-  // const commentText = parentNode.children[0];
-  // commentText.classList.remove("noDisplay");
-  // const commentInputP = parentNode.children[1];
-  // commentInputP.classList.remove("d-flex");
-  // commentInputP.classList.add("noDisplay");
-  // const commentfile = parentNode.children[2]
-  // commentfile.classList.remove("d-flex");
-  // commentfile.classList.add("noDisplay");
   const imgRef = ref(
     storageService,
     `${authService.currentUser.uid}/${uuidv4()}`
@@ -288,6 +279,10 @@ export const reply = (doctime) => {
   replybtn.addEventListener('click', (event) => save_reply(event, doctime)
   )
 
+  const closebtn = document.getElementById("closebtn");
+  closebtn.addEventListener('click', (event) => close_reply(event, doctime)
+  )
+
   getreplyList(doctime);
 }
 
@@ -400,7 +395,7 @@ export const delete_reply = async (event, doctime) => {
   }
 };
 
-export const close_reply = (event) => {
+export const close_reply = (event, doctime) => {
   event.preventDefault();
 
   document.querySelectorAll('.mypost').forEach(function (el) {
@@ -410,5 +405,5 @@ export const close_reply = (event) => {
   const replyList = document.getElementById("reply-list");
   replyList.innerHTML = "";
 
-
+  doctime
 }
