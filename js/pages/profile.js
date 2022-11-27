@@ -95,8 +95,8 @@ export const getMyCommentList = async () => {
       <button class="updateBtn" onclick="update_comment(event)">완료</button>
       </p>
       <p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
-      <p> <img id="feedImg" src="${cmtObj.feedImg
-      }" height="150px"></p>
+      <p style="text-align:center"> <img id="feedImg" src="${cmtObj.feedImg
+      }" height="300px"></p>
         
 
                   <footer class="quote-footer">

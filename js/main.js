@@ -13,6 +13,7 @@ import {
 } from "./pages/newsfeed.js";
 
 import { filterword } from "./pages/search.js"
+// import {  } from "./pages/post.js"
 
 // url 바뀌면 handleLocation 실행하여 화면 변경
 window.addEventListener("hashchange", handleLocation);

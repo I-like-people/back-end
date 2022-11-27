@@ -214,7 +214,7 @@ export const logoutgetCommentList = async () => {
                   <p class="commentText">${cmtObj.text}</p>
                   <p id="${cmtObj.id
       }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn btn btn-outline-secondary" onclick="update_comment(event)">완료</button></p>
-      <p> <img id="feedImg" src="${cmtObj.feedImg
+      <p style="text-align:center"> <img id="feedImg" src="${cmtObj.feedImg
       }" height="300px; text-align: center"></p>
                   <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
       }" alt="profileImg" /><span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"
