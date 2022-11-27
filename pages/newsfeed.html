@@ -100,7 +100,15 @@
   <!-- <div class="mypic">
     <h1>I like people</h1>
   </div> -->
+  <div id="id_search_form">
+    <select class='SelectSearch  form-select' name='WhichSearch'>
+      <option id="google" value="google">Google</option>
+      <option id="naver" value="naver">Naver</option>
+    </select>
+    <input class='keyword form-control' type='text' name='keyword_search' maxlength=255 value="" autocomplete="off">
+    <button onclick="keywordSearch()" class="btn btn-outline-secondary">검색</button>
 
+  </div>
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 16 16">

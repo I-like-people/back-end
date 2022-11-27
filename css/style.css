@@ -298,5 +298,24 @@
 #postBtn {
   width: 150px;
   height: 40px;
-  margin:5px 80px 0px 0px;
+  margin: 5px 80px 0px 0px;
+}
+
+#id_search_form {
+  width: 450px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+#id_search_form input {
+  width: 200px;
+}
+
+#id_search_form .btn {
+  width: 100px;
+}
+
+#id_search_form .SelectSearch {
+  width: 120px;
 }
