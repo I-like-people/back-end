@@ -10,6 +10,12 @@ import {
   update_comment,
   onEditing,
   delete_comment,
+  reply,
+  getreplyList,
+  save_reply,
+  update_reply,
+  delete_reply,
+  close_reply
 } from "./pages/newsfeed.js";
 
 import { filterword } from "./pages/search.js"
@@ -58,3 +64,10 @@ window.goPost = goPost;
 window.onFileChangeFeed = onFileChangeFeed;
 window.onFileChangeComment = onFileChangeComment;
 window.filterword = filterword;
+window.reply = reply;
+window.getreplyList = getreplyList;
+window.save_reply = save_reply;
+window.update_reply = update_reply;
+window.delete_reply = delete_reply;
+window.close_reply = close_reply;
+

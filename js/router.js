@@ -48,8 +48,26 @@ export const handleLocation = async () => {
       document.querySelectorAll('.logoutBox').forEach(function (el) {
         el.style.display = 'none';
       });
+
+      document.querySelectorAll('.mypost').forEach(function (el) {
+        el.style.display = 'none';
+      });
+
       logoutgetCommentList();
     } else {
+
+      document.querySelectorAll('.mypost').forEach(function (el) {
+        el.style.display = 'none';
+      });
+
+      document.getElementById("nickname").textContent =
+        authService.currentUser?.displayName ?? "닉네임 없음";
+
+      document.getElementById("profileImg").src =
+        authService.currentUser?.photoURL ?? "../assets/blankProfile.webp";
+      getCommentList();
+
+
       document.querySelectorAll('.loginBox').forEach(function (el) {
         el.style.display = 'none';
       });

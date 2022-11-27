@@ -150,3 +150,23 @@
 
   <main id="Mainbox js-loop" class="Mainbox js-loop">
   </main>
+
+  <div class="mypost">
+    <div class="form-floating mb-3">
+      <img id="profileImg" width="50px" height="50px" src="/assets/blankProfile.webp" />
+      <span id="nickname">닉네임</span>
+    </div>
+
+    <div class="form-floating">
+      <textarea class="form-control" placeholder="Leave a comment here" id="comment" style="height: 100px"></textarea>
+      <label for="floatingTextarea2">게시물</label>
+    </div>
+    <div class="postBox">
+      <button id="replybtn" type="button" class="btn btn-dark" style="margin-right:10px"> 등록</button>
+      <button onclick="close_reply(event)" type="button" class="btn btn-dark" style="margin-right:10px"> 닫기</button>
+    </div>
+  </div>
+
+  <div>
+    <div class="reply-list" id="reply-list"></div>
+  </div>
