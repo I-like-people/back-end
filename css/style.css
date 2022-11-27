@@ -37,8 +37,8 @@
 }
 
 .mycards {
-  width: 1000px;
-  margin: auto;
+  width: 900px;
+  margin: 20px auto;
 }
 
 .mycards.card {
