@@ -64,8 +64,8 @@ export const onEditing = (event) => {
   udBtns.forEach((udBtn) => (udBtn.disabled = "true"));
 
   const cardBody = event.target.parentNode.parentNode;
-  const commentText = cardBody.children[0].children[0];
-  const commentInputP = cardBody.children[0].children[1];
+  const commentText = cardBody.children[0].children[1];
+  const commentInputP = cardBody.children[0].children[3];
   const commentFile = cardBody.children[0].children[2];
 
   commentText.classList.add("noDisplay");
@@ -80,6 +80,7 @@ export const update_comment = async (event) => {
   event.preventDefault();
   const newComment = event.target.parentNode.children[0].value;
   const id = event.target.parentNode.id;
+  console.log(id)
 
   // const parentNode = event.target.parentNode.parentNode;
   // const commentText = parentNode.children[0];
@@ -129,7 +130,6 @@ export const delete_comment = async (event) => {
 };
 
 
-
 export const getCommentList = async () => {
   let cmtObjList = [];
   const q = query(
@@ -153,15 +153,15 @@ export const getCommentList = async () => {
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
               <blockquote class="blockquote mb-0">
+
+      <p> <img id="feedImg" src="${cmtObj.feedImg
+      }" height="150px"></p>
                   <p class="commentText">${cmtObj.text}</p>
+<p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
                   <p id="${cmtObj.id}" class="noDisplay"> 
                   <input class="newCmtInput" type="text" maxlength="100" />
       <button class="updateBtn" onclick="update_comment(event)">완료</button>
       </p>
-      <p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
-      <p> <img id="feedImg" src="${cmtObj.feedImg
-      }" height="150px"></p>
-        
                   <footer class="quote-footer">
                   <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
       }" alt="profileImg" />
@@ -211,16 +211,23 @@ export const logoutgetCommentList = async () => {
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
               <blockquote class="blockquote mb-0">
-                  <p class="commentText">${cmtObj.text}</p>
-                  <p id="${cmtObj.id
-      }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn" onclick="update_comment(event)">완료</button></p>
-      <p> <img id="feedImg" src="${cmtObj.feedImg
+                   <p> <img id="feedImg" src="${cmtObj.feedImg
       }" height="150px"></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
-      }" alt="profileImg" /><span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"
-      }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
-        .toString()
-        .slice(0, 25)}</div></footer>
+                  <p class="commentText">${cmtObj.text}</p>
+<p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
+                  <p id="${cmtObj.id}" class="noDisplay"> 
+                  <input class="newCmtInput" type="text" maxlength="100" />
+      <button class="updateBtn" onclick="update_comment(event)">완료</button>
+      </p>
+                  <footer class="quote-footer">
+                  <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
+      }" alt="profileImg" />
+      
+      <span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"}</span>
+      </div>
+      
+      <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>
+      </footer>
               </blockquote>                 
             </div>
      </div>`;
