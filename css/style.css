@@ -1,3 +1,15 @@
+.vid2 {
+  width: 100%;
+  overflow: hidden;
+}
+
+.video-container {
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+  background-size: cover;
+}
+
 * {
   font-family: "Noto Serif KR", serif;
 }
