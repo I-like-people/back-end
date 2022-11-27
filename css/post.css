@@ -66,8 +66,8 @@
   }
   .Mainbox {
     width: 70rem;
-    height: 760px;
-    margin: auto;
+    height: 700px;
+    margin: 4rem auto;
     position: relative;
     justify-content: center;
     background-color: #ebf5ff;
