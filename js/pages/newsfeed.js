@@ -62,12 +62,10 @@ export const onEditing = (event) => {
   event.preventDefault();
   const udBtns = document.querySelectorAll(".editBtn, .deleteBtn");
   udBtns.forEach((udBtn) => (udBtn.disabled = "true"));
-
   const cardBody = event.target.parentNode.parentNode;
-  const commentText = cardBody.children[0].children[0];
-  const commentInputP = cardBody.children[0].children[1];
+  const commentText = cardBody.children[0].children[1];
+  const commentInputP = cardBody.children[0].children[3];
   const commentFile = cardBody.children[0].children[2];
-
   commentText.classList.add("noDisplay");
   commentInputP.classList.add("d-flex");
   commentInputP.classList.remove("noDisplay");
@@ -75,21 +73,11 @@ export const onEditing = (event) => {
   commentFile.classList.remove("noDisplay");
   commentInputP.children[0].focus();
 };
-
 export const update_comment = async (event) => {
   event.preventDefault();
   const newComment = event.target.parentNode.children[0].value;
   const id = event.target.parentNode.id;
-
-  // const parentNode = event.target.parentNode.parentNode;
-  // const commentText = parentNode.children[0];
-  // commentText.classList.remove("noDisplay");
-  // const commentInputP = parentNode.children[1];
-  // commentInputP.classList.remove("d-flex");
-  // commentInputP.classList.add("noDisplay");
-  // const commentfile = parentNode.children[2]
-  // commentfile.classList.remove("d-flex");
-  // commentfile.classList.add("noDisplay");
+  console.log(id)
   const imgRef = ref(
     storageService,
     `${authService.currentUser.uid}/${uuidv4()}`
@@ -101,7 +89,6 @@ export const update_comment = async (event) => {
     const response = await uploadString(imgRef, imgDataUrl, "data_url");
     downloadUrl = await getDownloadURL(response.ref);
   }
-
   const commentRef = doc(dbService, "comments", id);
   try {
     await updateDoc(commentRef, { text: newComment, feedImg: downloadUrl });
@@ -112,7 +99,6 @@ export const update_comment = async (event) => {
     alert(error);
   }
 };
-
 export const delete_comment = async (event) => {
   event.preventDefault();
   const id = event.target.name;
@@ -127,9 +113,6 @@ export const delete_comment = async (event) => {
     }
   }
 };
-
-
-
 export const getCommentList = async () => {
   let cmtObjList = [];
   const q = query(
@@ -144,7 +127,6 @@ export const getCommentList = async () => {
     };
     cmtObjList.push(commentObj);
   });
-
   const commnetList = document.getElementById("Mainbox js-loop");
   const currentUid = authService.currentUser?.uid;
   commnetList.innerHTML = "";
@@ -153,41 +135,35 @@ export const getCommentList = async () => {
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
               <blockquote class="blockquote mb-0">
-                  <p class="commentText postComment">${cmtObj.text}</p>
-                  <p id="${cmtObj.id}" class="noDisplay"> 
-                  <input class="newCmtInput" type="text" maxlength="100" />
-      <button class="updateBtn btn btn-outline-primary" onclick="update_comment(event)">완료</button>
-      </p>
-      <p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
-      <p style="text-align:center" class="postFeedimg"> <img id="feedImg" src="${cmtObj.feedImg
+      <p style="text-align:center"> <img id="feedImg" src="${cmtObj.feedImg
       }" height="300px"></p>
-        
+                  <p class="commentText">${cmtObj.text}</p>
+<p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
+                  <p id="${cmtObj.id}" class="noDisplay">
+                  <input class="newCmtInput" type="text" maxlength="100" />
+      <button class="updateBtn" onclick="update_comment(event)">완료</button>
+      </p>
                   <footer class="quote-footer">
                   <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
       }" alt="profileImg" />
-      
       <span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"}</span>
       </div>
-      
       <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>
       </footer>
-
               </blockquote>
               <div class="${isOwner ? "updateBtns" : "noDisplay"}">
                    <button onclick="onEditing(event)" class="editBtn btn btn-dark">수정</button>
                 <button name="${cmtObj.id
       }" onclick="delete_comment(event)" class="deleteBtn btn btn-dark">삭제</button>
-              </div>            
+              </div>
             </div>
      </div>`;
     const div = document.createElement("div");
     div.classList.add("mycards");
     div.innerHTML = temp_html;
     commnetList.appendChild(div);
-
   });
 };
-
 export const logoutgetCommentList = async () => {
   let cmtObjList = [];
   const q = query(
@@ -211,17 +187,22 @@ export const logoutgetCommentList = async () => {
     const temp_html = `<div class="card commentCard">
           <div class="card-body">
               <blockquote class="blockquote mb-0">
+                   <p style="text-align:center"> <img id="feedImg" src="${cmtObj.feedImg
+      }" height="300px"></p>
                   <p class="commentText">${cmtObj.text}</p>
-                  <p id="${cmtObj.id
-      }" class="noDisplay"><input class="newCmtInput" type="text" maxlength="30" /><button class="updateBtn btn btn-outline-secondary" onclick="update_comment(event)">완료</button></p>
-      <p style="text-align:center"> <img id="feedImg" src="${cmtObj.feedImg
-      }" height="300px; text-align: center"></p>
-                  <footer class="quote-footer"><div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
-      }" alt="profileImg" /><span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"
-      }</span></div><div class="cmtAt">${new Date(cmtObj.createdAt)
-        .toString()
-        .slice(0, 25)}</div></footer>
-              </blockquote>                 
+<p class="noDisplay"><input onchange="onFileChangeComment(event)" type="file" accept="images/*" /></p>
+                  <p id="${cmtObj.id}" class="noDisplay">
+                  <input class="newCmtInput" type="text" maxlength="100" />
+      <button class="updateBtn" onclick="update_comment(event)">완료</button>
+      </p>
+                  <footer class="quote-footer">
+                  <div>BY&nbsp;&nbsp;<img class="cmtImg" width="50px" height="50px" src="${cmtObj.profileImg
+      }" alt="profileImg" />
+      <span class="commentNickname">${cmtObj.nickname ?? "닉네임 없음"}</span>
+      </div>
+      <div class="cmtAt">${new Date(cmtObj.createdAt).toString().slice(0, 25)}</div>
+      </footer>
+              </blockquote>
             </div>
      </div>`;
     const div = document.createElement("div");
