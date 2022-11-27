@@ -66,43 +66,15 @@
   }
   .Mainbox {
     width: 70rem;
-    height: 680px;
+    height: 760px;
+    float: left;
     position: relative;
     justify-content: center;
     background-color: #ebf5ff;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
   }
-  .box {
-    width: 70rem;
-    height: 20%;
-    margin: 10rem auto;
-    display: flex; 
-    position: relative;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    background-color: #e4ddce;
-    transition: .4s;
-    border-radius: 10px;
-  }
-  .box img {
-    position: absolute;
-    margin: auto;
-    display: block;
-    left: 10px;
-    width: 12rem;
-    height: 8rem;
-    object-fit: contain;
-    border-radius: 10px;
-    transition: .4s;
-  }
-  .box.active {
-    width: 30rem;
-    background: #f03d3d00;
-    color: #f03d3d00;
-  }
+  
 
   .Mainbox::-webkit-scrollbar {
     display:none;/* 크롬, 사파리, 오페라, 엣지 */
@@ -147,4 +119,126 @@
 .weatherLine > div {
   width: 60px;
   font-weight: bold;
+}
+html, body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+  float: none;
+}
+/* 배민수바보 */
+/* ======== Calendar ======== */
+.my-calendar {
+  width: 800px;
+  float: right;
+  padding: 20px 20px 10px;
+  text-align: center;
+  font-weight: 800;
+  border: 1px solid rgb(0, 0, 0);
+  cursor: default;
+  flex: 2;
+}
+.my-calendar .clicked-date {
+  border-radius: 25px;
+  margin-top: 36px;
+  float: left;
+  width: 42%;
+  padding: 46px 0 26px;
+  background: #ddd;
+}
+.my-calendar .calendar-box {
+  float: right;
+  float: left;
+  width: 58%;
+  padding-left: 30px;
+}
+
+.clicked-date .cal-day {
+  font-size: 24px;
+}
+.clicked-date .cal-date {
+  font-size: 130px;
+}
+
+.ctr-box {
+  padding: 0 16px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+.ctr-box .btn-cal {
+  position: relative;
+  float: left;
+  width: 25px;
+  height: 25px;
+  margin-top: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+.ctr-box .btn-cal:after {
+  content: '<';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 25px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.ctr-box .btn-cal.next {
+  float: right;
+}
+.ctr-box .btn-cal.next:after {
+  content: '>';
+}
+
+.cal-table {
+  width: 100%;
+}
+.cal-table th {
+  width: 14.2857%;
+  padding-bottom: 5px;
+  font-size: 16px;
+  font-weight: 900;
+}
+.cal-table td {
+  padding: 3px 0;
+  height: 50px;
+  font-size: 15px;
+  vertical-align: middle;
+}
+.cal-table td.day {
+  position: relative;
+  cursor: pointer;
+}
+.cal-table td.today {
+  background: #ffd255;
+  border-radius: 50%;
+  color: #fff;
+}
+.cal-table td.day-active {
+  background: #ff8585;
+  border-radius: 50%;
+  color: #fff;
+}
+.cal-table td.has-event:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: #FFC107;
 }
