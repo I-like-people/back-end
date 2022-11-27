@@ -30,9 +30,11 @@ const weather = (lat, lon) => {
       const weather = document.getElementById("weather");
       weather.innerHTML = "";
 
-      const temp_html = `<div>${city}</div>
-          <div><img src="http://openweathermap.org/img/wn/${icon}.png"></div>
-          <div>${c_temp} °</div>
+      const temp_html = `<div style="margin-left:28px"><img src="http://openweathermap.org/img/wn/${icon}.png"></div>
+        <div class="weatherLine">
+          <div style="margin-right:2px; width:70px; color:blue">${city}</div>
+          <div style="color:red">${c_temp} °</div>
+        </div>
           `
 
       const div = document.createElement('div');
